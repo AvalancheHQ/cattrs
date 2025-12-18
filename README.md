@@ -1,5 +1,7 @@
 # *cattrs*: Flexible Object Serialization and Validation
 
+This is a test to ensure that the commit is not pushed
+
 *Because validation belongs to the edges.*
 
 [![Documentation](https://img.shields.io/badge/Docs-Read%20The%20Docs-black)](https://catt.rs/)

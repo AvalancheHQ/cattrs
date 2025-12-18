@@ -49,13 +49,13 @@ class C:
 @pytest.mark.parametrize(
     "unstructure_strat", [UnstructureStrategy.AS_DICT, UnstructureStrategy.AS_TUPLE]
 )
-def test_unstructure_attrs_primitives(benchmark, converter_cls, unstructure_strat):
+@pytest.mark.codspeed_benchmark
+def test_unstructure_attrs_primitives(converter_cls, unstructure_strat):
     """Benchmark a large (30 attributes) attrs class containing primitives."""
 
     c = converter_cls(unstruct_strat=unstructure_strat)
 
-    benchmark(
-        c.unstructure,
+    c.unstructure(
         C(
             1,
             1.0,
@@ -95,7 +95,8 @@ def test_unstructure_attrs_primitives(benchmark, converter_cls, unstructure_stra
 @pytest.mark.parametrize(
     "unstructure_strat", [UnstructureStrategy.AS_DICT, UnstructureStrategy.AS_TUPLE]
 )
-def test_structure_attrs_primitives(benchmark, converter_cls, unstructure_strat):
+@pytest.mark.codspeed_benchmark
+def test_structure_attrs_primitives(converter_cls, unstructure_strat):
     """Benchmark a large (30 attributes) attrs class containing primitives."""
 
     c = converter_cls(unstruct_strat=unstructure_strat)
@@ -135,4 +136,4 @@ def test_structure_attrs_primitives(benchmark, converter_cls, unstructure_strat)
 
     raw = c.unstructure(inst)
 
-    benchmark(c.structure, raw, C)
+    c.structure(raw, C)

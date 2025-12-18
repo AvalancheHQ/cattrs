@@ -10,7 +10,8 @@ from cattrs import BaseConverter, Converter, UnstructureStrategy
 @pytest.mark.parametrize(
     "unstructure_strat", [UnstructureStrategy.AS_DICT, UnstructureStrategy.AS_TUPLE]
 )
-def test_unstructure_attrs_nested(benchmark, converter_cls, unstructure_strat):
+@pytest.mark.codspeed_benchmark
+def test_unstructure_attrs_nested(converter_cls, unstructure_strat):
     c = converter_cls(unstruct_strat=unstructure_strat)
 
     @define
@@ -64,14 +65,15 @@ def test_unstructure_attrs_nested(benchmark, converter_cls, unstructure_strat):
         InnerE(5, 5.0, "five", b"five"),
     )
 
-    benchmark(c.unstructure, inst)
+    c.unstructure(inst)
 
 
 @pytest.mark.parametrize("converter_cls", [BaseConverter, Converter])
 @pytest.mark.parametrize(
     "unstructure_strat", [UnstructureStrategy.AS_DICT, UnstructureStrategy.AS_TUPLE]
 )
-def test_unstruct_attrs_deep_nest(benchmark, converter_cls, unstructure_strat):
+@pytest.mark.codspeed_benchmark
+def test_unstruct_attrs_deep_nest(converter_cls, unstructure_strat):
     c = converter_cls(unstruct_strat=unstructure_strat)
 
     @define
@@ -133,4 +135,4 @@ def test_unstruct_attrs_deep_nest(benchmark, converter_cls, unstructure_strat):
 
     inst = Outer(*[make_inner_e() for _ in range(4)])
 
-    benchmark(c.unstructure, inst)
+    c.unstructure(inst)

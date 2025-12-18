@@ -11,7 +11,8 @@ from cattrs import BaseConverter, Converter, UnstructureStrategy
 @pytest.mark.parametrize(
     "unstructure_strat", [UnstructureStrategy.AS_DICT, UnstructureStrategy.AS_TUPLE]
 )
-def test_unstructure_attrs_lists(benchmark, converter_cls, unstructure_strat):
+@pytest.mark.codspeed_benchmark
+def test_unstructure_attrs_lists(converter_cls, unstructure_strat):
     """
     Benchmark a large (30 attributes) attrs class containing lists of
     primitives.
@@ -56,8 +57,7 @@ def test_unstructure_attrs_lists(benchmark, converter_cls, unstructure_strat):
 
     c = converter_cls(unstruct_strat=unstructure_strat)
 
-    benchmark(
-        c.unstructure,
+    c.unstructure(
         C(
             [1] * 3,
             [1.0] * 3,
@@ -97,7 +97,8 @@ def test_unstructure_attrs_lists(benchmark, converter_cls, unstructure_strat):
 @pytest.mark.parametrize(
     "unstructure_strat", [UnstructureStrategy.AS_DICT, UnstructureStrategy.AS_TUPLE]
 )
-def test_unstructure_attrs_mappings(benchmark, converter_cls, unstructure_strat):
+@pytest.mark.codspeed_benchmark
+def test_unstructure_attrs_mappings(converter_cls, unstructure_strat):
     """
     Benchmark an attrs class containing mappings.
     """
@@ -114,8 +115,7 @@ def test_unstructure_attrs_mappings(benchmark, converter_cls, unstructure_strat)
 
     c = converter_cls(unstruct_strat=unstructure_strat)
 
-    benchmark(
-        c.unstructure,
+    c.unstructure(
         C(
             {i: str(i) for i in range(30)},
             {float(i): bytes(i) for i in range(30)},
@@ -125,7 +125,8 @@ def test_unstructure_attrs_mappings(benchmark, converter_cls, unstructure_strat)
 
 
 @pytest.mark.parametrize("converter_cls", [BaseConverter, Converter])
-def test_structure_attrs_mappings(benchmark, converter_cls):
+@pytest.mark.codspeed_benchmark
+def test_structure_attrs_mappings(converter_cls):
     """
     Benchmark an attrs class containing mappings.
     """
@@ -149,4 +150,4 @@ def test_structure_attrs_mappings(benchmark, converter_cls):
     )
     raw = c.unstructure(inst)
 
-    benchmark(c.structure, raw, C)
+    c.structure(raw, C)

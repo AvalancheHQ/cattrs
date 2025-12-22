@@ -10,6 +10,7 @@ This is a test to ensure that the commit is not pushed
 [![Supported Python Versions](https://img.shields.io/pypi/pyversions/cattrs.svg)](https://github.com/python-attrs/cattrs)
 [![Downloads](https://static.pepy.tech/badge/cattrs/month)](https://pepy.tech/project/cattrs)
 [![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/Tinche/22405310d6a663164d894a2beab4d44d/raw/covbadge.json)](https://github.com/python-attrs/cattrs/actions/workflows/main.yml)
+[![CodSpeed](https://img.shields.io/endpoint?url=https://codspeed.io/badge.json)](https://codspeed.io/AvalancheHQ/cattrs?utm_source=badge)
 
 ---
 

@@ -26,43 +26,49 @@ class SimpleStrEnum(StrEnum):
 
 
 @pytest.mark.parametrize("converter_cls", [BaseConverter, Converter, MsgspecJsonConverter, OrjsonConverter])
-def test_unstructure_simple_enum(benchmark, converter_cls):
+@pytest.mark.codspeed_benchmark
+def test_unstructure_simple_enum(converter_cls):
     """Benchmark unstructuring a simple enum."""
     c = converter_cls()
-    benchmark(c.unstructure, SimpleEnum.FIRST)
+    c.unstructure(SimpleEnum.FIRST)
 
 
 @pytest.mark.parametrize("converter_cls", [BaseConverter, Converter, MsgspecJsonConverter, OrjsonConverter])
-def test_structure_simple_enum(benchmark, converter_cls):
+@pytest.mark.codspeed_benchmark
+def test_structure_simple_enum(converter_cls):
     """Benchmark structuring a simple enum."""
     c = converter_cls()
-    benchmark(c.structure, "first", SimpleEnum)
+    c.structure("first", SimpleEnum)
 
 
 @pytest.mark.parametrize("converter_cls", [BaseConverter, Converter, MsgspecJsonConverter, OrjsonConverter])
-def test_unstructure_simple_int_enum(benchmark, converter_cls):
+@pytest.mark.codspeed_benchmark
+def test_unstructure_simple_int_enum(converter_cls):
     """Benchmark unstructuring a simple IntEnum."""
     c = converter_cls()
-    benchmark(c.unstructure, SimpleIntEnum.ONE)
+    c.unstructure(SimpleIntEnum.ONE)
 
 
 @pytest.mark.parametrize("converter_cls", [BaseConverter, Converter, MsgspecJsonConverter, OrjsonConverter])
-def test_structure_simple_int_enum(benchmark, converter_cls):
+@pytest.mark.codspeed_benchmark
+def test_structure_simple_int_enum(converter_cls):
     """Benchmark structuring a simple IntEnum."""
     c = converter_cls()
-    benchmark(c.structure, 1, SimpleIntEnum)
+    c.structure(1, SimpleIntEnum)
 
 
 @pytest.mark.parametrize("converter_cls", [BaseConverter, Converter, MsgspecJsonConverter, OrjsonConverter])
-def test_unstructure_simple_str_enum(benchmark, converter_cls):
+@pytest.mark.codspeed_benchmark
+def test_unstructure_simple_str_enum(converter_cls):
     """Benchmark unstructuring a simple StrEnum."""
     c = converter_cls()
-    benchmark(c.unstructure, SimpleStrEnum.ALPHA)
+    c.unstructure(SimpleStrEnum.ALPHA)
 
 
 @pytest.mark.parametrize("converter_cls", [BaseConverter, Converter, MsgspecJsonConverter, OrjsonConverter])
-def test_structure_simple_str_enum(benchmark, converter_cls):
+@pytest.mark.codspeed_benchmark
+def test_structure_simple_str_enum(converter_cls):
     """Benchmark structuring a simple StrEnum."""
     c = converter_cls()
-    benchmark(c.structure, "alpha", SimpleStrEnum)
+    c.structure("alpha", SimpleStrEnum)
 
